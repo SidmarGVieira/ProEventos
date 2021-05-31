@@ -38,7 +38,7 @@ namespace ProEventos.API.Controllers
         // };
         public EventoController(DataContext context)
         {
-            this._context = context;
+            this._context = context; 
         }
 
         [HttpGet]
