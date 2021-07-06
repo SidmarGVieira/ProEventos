@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using ProEventos.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+using ProEventos.Persistence.Contextos;
+using ProEventos.Application.Contratos;
+using ProEventos.Application;
+using ProEventos.Persistence.Contratos;
+using ProEventos.Persistence;
 
 namespace ProEventos.API
 {
@@ -33,7 +29,15 @@ namespace ProEventos.API
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
 
-            services.AddControllers();
+            services.AddControllers()
+                    .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = 
+                     Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
+
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+            services.AddScoped<IEventoPersist, EventoPersist>();
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
