@@ -14,9 +14,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner'
 
 import { AppComponent } from './app.component';
-import { EventosComponent } from './eventos/eventos.component';
-import { PalestrantesComponent } from './palestrantes/palestrantes.component';
-import { NavComponent } from './nav/nav.component';
+import { TituloComponent } from './shared/titulo/titulo.component';
+import { ContatosComponent } from './components/contatos/contatos.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EventosComponent } from './components/eventos/eventos.component';
+import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+// import { NavComponent } from './shared/nav/nav.component';
+import { NavComponent } from './shared/nav/nav.component';
 
 import { EventoService } from './services/evento.service';
 
@@ -26,8 +31,12 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 @NgModule({
   declarations: [
     AppComponent,
+    TituloComponent,
     EventosComponent,
     PalestrantesComponent,
+    ContatosComponent,
+    DashboardComponent,
+    PerfilComponent,
     NavComponent,
     DateTimeFormatPipe
    ],
